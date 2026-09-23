@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+:root { font-family: 'DM Sans', sans-serif; color: #253b32; background: #f7f6f0; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: wait; opacity: .6; }
+a { color: inherit; text-decoration: none; }
+.pagina { max-width: 1240px; margin: auto; padding: 0 44px; }
+header { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; border-bottom: 1px solid #dedfd5; }
+.marca { font-family: 'Lora', Georgia, serif; font-size: 29px; font-weight: 600; }
+.marca span { display: block; padding-left: 30px; margin-top: 4px; font: 9px 'DM Sans', sans-serif; letter-spacing: 2.4px; }
+.cabecalho-nota { font-size: 12px; color: #6d786d; }
+.introducao { display: flex; justify-content: space-between; align-items: center; padding: 54px 0 18px; gap: 24px; }
+.sobretitulo { font-size: 10px; letter-spacing: 2px; font-weight: 700; color: #727d5e; }
+h1, h2, h3 { font-family: 'Lora', Georgia, serif; }
+h1 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.16; font-weight: 500; margin: 18px 0; letter-spacing: -1.8px; }
+h1 em { color: #72835c; font-weight: 400; }
+.introducao p, .formulario > p { color: #747c72; font-size: 13px; line-height: 1.7; }
+.contador { min-width: 175px; padding: 24px; text-align: center; border: 1px solid #d9ddcd; border-radius: 50% 50% 8px 8px; background: #eeefe3; }
+.contador strong { display: block; font: 52px 'Lora', Georgia, serif; }
+.contador span { font-size: 11px; color: #63705c; }
+.conteudo { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 38px; margin-bottom: 65px; align-items: start; }
+.painel { padding: 28px; border-radius: 12px; background: #fffefb; border: 1px solid #e1e3d8; }
+h2 { font-size: 23px; font-weight: 500; margin: 12px 0; }
+.formulario > p { font-size: 12px; margin-bottom: 25px; }
+fieldset { padding: 0; border: 0; margin: 0; min-width: 0; }
+label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+input:not([type=checkbox]), select { width: 100%; border: 1px solid #dcded3; border-radius: 6px; background: #fffefa; color: #314439; padding: 12px; font-size: 12px; }
+input::placeholder { color: #8a9085; }
+input:focus, select:focus, button:focus-visible, a:focus-visible { outline: 2px solid #71885f; outline-offset: 3px; }
+.formulario input:not([type=checkbox]) { margin-bottom: 21px; }
+.checkbox { display: flex; gap: 9px; align-items: center; font-weight: 400; margin-bottom: 24px; }
+input[type=checkbox] { accent-color: #244c3c; width: 16px; height: 16px; }
+.primario { width: 100%; background: #244c3c; color: white; padding: 13px 10px; border: 0; border-radius: 6px; font-size: 12px; }
+.primario:hover { background: #193b2d; }
+.titulo-colecao { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 20px; }
+.titulo-colecao h2 { margin: 0; }
+.titulo-colecao > span { font-size: 10px; color: #7a8275; }
+.filtros { display: flex; gap: 14px; padding-bottom: 23px; border-bottom: 1px solid #dedfd5; }
+.busca { flex: 1; }
+.filtros label { font-size: 10px; color: #737d6c; }
+.livros { list-style: none; padding: 0; margin: 0; }
+.livro { display: flex; gap: 18px; align-items: center; padding: 23px 0; border-bottom: 1px solid #dedfd5; }
+.lombada { flex-shrink: 0; width: 65px; height: 87px; display: grid; place-items: center; background: #dfe4d2; color: #53694b; border-left: 5px solid #b7c4a3; border-radius: 2px 6px 6px 2px; font: italic 34px 'Lora', Georgia, serif; }
+.livro:nth-child(3n+2) .lombada { background: #ece1d4; border-color: #d8bfa6; color: #946b4c; }
+.livro:nth-child(3n+3) .lombada { background: #dce3e4; border-color: #b0c4c7; color: #57797e; }
+.livro-info { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.genero { font-size: 9px; text-transform: uppercase; letter-spacing: 1.4px; color: #717e64; }
+.livro h3 { margin: 5px 0; font-size: 18px; font-weight: 500; }
+.livro p { font-size: 12px; color: #78806f; margin: 0 0 9px; }
+.status { font-size: 9px; background: #edece3; color: #7b775c; padding: 4px 9px; border-radius: 20px; }
+.status.lido { background: #e4ecdc; color: #49643d; }
+.excluir { border: 0; background: transparent; color: #956a60; padding: 10px 0 10px 10px; font-size: 11px; }
+.excluir:hover { text-decoration: underline; }
+.capa-livro { flex-shrink: 0; width: 65px; height: 87px; object-fit: cover; border-radius: 3px 6px 6px 3px; }
+.campo-capa { margin-bottom: 20px; }
+.campo-capa input[type=file] { max-width: 100%; padding: 9px; margin-bottom: 0; }
+.campo-capa .ajuda { font-size: 10px; color: #737d6c; margin: 7px 0; }
+.preview-capa { display: block; width: 80px; height: 108px; object-fit: cover; border-radius: 5px; margin-top: 12px; }
+.acoes-livro { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.alterar-capa { padding: 5px 0; border: 0; background: transparent; color: #426337; font-size: 11px; }
+.alterar-capa:hover { text-decoration: underline; }
+.editar-capa { margin-top: 18px; }
+.vazio { text-align: center; color: #76806e; padding: 58px 15px; font-size: 13px; }
+.vazio > span { display: block; font-size: 40px; color: #a1af92; }
+.vazio h3 { font-weight: 400; color: #526247; font-size: 20px; }
+.vazio p { line-height: 1.7; }
+.erro { font-size: 12px; color: #a13529; line-height: 1.5; }
+.alerta { background: #f9e8e1; padding: 14px; border-radius: 6px; }
+.alerta button { color: inherit; background: none; border: 0; text-decoration: underline; }
+.aviso { min-height: 20px; font-size: 12px; color: #426337; margin: 10px 0 20px; }
+footer { border-top: 1px solid #dedfd5; padding: 22px 0; display: flex; justify-content: space-between; font: 17px 'Lora', Georgia, serif; color: #77826c; }
+footer span { font: 10px 'DM Sans', sans-serif; }
+@media (max-width: 800px) { .pagina { padding: 0 22px; } .conteudo { grid-template-columns: 1fr; gap: 32px; } .introducao { padding-top: 35px; } .contador { min-width: 125px; padding: 20px 10px; } .contador strong { font-size: 40px; } .cabecalho-nota { display: none; } }
+@media (max-width: 450px) { .introducao { align-items: flex-start; } .contador { min-width: 90px; padding: 15px 8px; } .contador span { display: block; max-width: 75px; line-height: 1.6; } h1 { font-size: 32px; } .titulo-colecao { align-items: flex-start; flex-direction: column; gap: 6px; } .filtros { flex-direction: column; } .livro { gap: 12px; } footer span { max-width: 150px; text-align: right; line-height: 1.6; } }
