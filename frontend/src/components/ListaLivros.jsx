@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CampoCapa from './CampoCapa';
 
-export default function ListaLivros({ livros, pesquisa, aoExcluir, excluindo, aoAtualizarCapa, atualizandoCapa }) {
+export default function ListaLivros({ livros, filtrando, aoExcluir, excluindo, aoAtualizarCapa, atualizandoCapa }) {
   const [editando, setEditando] = useState(null);
   const [capa, setCapa] = useState(null);
 
@@ -12,7 +12,7 @@ export default function ListaLivros({ livros, pesquisa, aoExcluir, excluindo, ao
     }
   }
   if (!livros.length) {
-    return <div className="vazio"><span aria-hidden="true">▤</span><h3>{pesquisa ? 'Nenhum livro encontrado.' : 'Nenhum item cadastrado.'}</h3><p>{pesquisa ? 'Tente pesquisar outro título.' : 'Sua próxima história começa no formulário ao lado.'}</p></div>;
+    return <div className="vazio"><span aria-hidden="true">▤</span><h3>{filtrando ? 'Nenhum livro encontrado.' : 'Nenhum item cadastrado.'}</h3><p>{filtrando ? 'Tente outro título ou filtro de leitura.' : 'Sua próxima história começa no formulário ao lado.'}</p></div>;
   }
 
   return (

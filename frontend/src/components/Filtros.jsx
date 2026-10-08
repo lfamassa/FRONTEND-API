@@ -1,8 +1,16 @@
 import React from 'react';
 
-export default function Filtros({ pesquisa, ordem, aoPesquisar, aoOrdenar }) {
+export default function Filtros({ pesquisa, ordem, aoPesquisar, aoOrdenar, leitura, aoFiltrarLeitura }) {
   return (
     <div className="filtros">
+      <div>
+        <label htmlFor="leitura">Leitura</label>
+        <select id="leitura" value={leitura} onChange={evento => aoFiltrarLeitura(evento.target.value)}>
+          <option value="todos">Todos</option>
+          <option value="lidos">Apenas lidos</option>
+          <option value="nao-lidos">Não lidos</option>
+        </select>
+      </div>
       <div className="busca">
         <label htmlFor="pesquisa">Pesquisar por título</label>
         <input id="pesquisa" type="search" placeholder="Encontre uma história..." value={pesquisa} onChange={evento => aoPesquisar(evento.target.value)} />

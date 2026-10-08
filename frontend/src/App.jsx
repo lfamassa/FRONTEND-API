@@ -9,6 +9,7 @@ export default function App() {
   const [total, setTotal] = useState(0);
   const [pesquisa, setPesquisa] = useState('');
   const [ordem, setOrdem] = useState('nome');
+  const [leitura, setLeitura] = useState('todos');
   const [versao, setVersao] = useState(0);
   const [carregando, setCarregando] = useState(true);
   const [salvando, setSalvando] = useState(false);
@@ -35,6 +36,12 @@ export default function App() {
       });
     return () => controller.abort();
   }, [pesquisa, ordem, versao]);
+
+  const livrosFiltrados = livros.filter(livro => {
+    if (leitura === 'lidos') return livro.lido;
+    if (leitura === 'nao-lidos') return !livro.lido;
+    return true;
+  });
 
   async function cadastrar(livro) {
     setSalvando(true);
@@ -99,8 +106,8 @@ export default function App() {
           <FormularioLivro aoCadastrar={cadastrar} salvando={salvando} />
           <section className="colecao" aria-labelledby="titulo-colecao">
             <div className="titulo-colecao"><h2 id="titulo-colecao">Minha estante</h2><span>Seu pequeno universo de leituras</span></div>
-            <Filtros pesquisa={pesquisa} ordem={ordem} aoPesquisar={setPesquisa} aoOrdenar={setOrdem} />
-            {carregando ? <p className="vazio" role="status">Carregando...</p> : <ListaLivros livros={livros} pesquisa={pesquisa} aoExcluir={excluir} excluindo={excluindo} aoAtualizarCapa={atualizarCapa} atualizandoCapa={atualizandoCapa} />}
+            <Filtros leitura={leitura} aoFiltrarLeitura={setLeitura} pesquisa={pesquisa} ordem={ordem} aoPesquisar={setPesquisa} aoOrdenar={setOrdem} />
+            {carregando ? <p className="vazio" role="status">Carregando...</p> : <ListaLivros livros={livrosFiltrados} filtrando={pesquisa.trim() !== '' || leitura !== 'todos'} aoExcluir={excluir} excluindo={excluindo} aoAtualizarCapa={atualizarCapa} atualizandoCapa={atualizandoCapa} />}
           </section>
         </div>
       </main>
