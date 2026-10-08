@@ -16,18 +16,22 @@ export default function FormularioLivro({ aoCadastrar, salvando }) {
 
   async function enviar(evento) {
     evento.preventDefault();
-    if (![livro.nome, livro.autor, livro.genero].every(valor => valor.trim())) {
+    if (
+      ![livro.nome, livro.autor, livro.genero].every((valor) => valor.trim())
+    ) {
       setErro('Preencha título, autor e gênero para cadastrar.');
       return;
     }
     setErro('');
     const dados = new FormData();
-    Object.entries(livro).forEach(([campo, valor]) => dados.append(campo, valor));
+    Object.entries(livro).forEach(([campo, valor]) =>
+      dados.append(campo, valor)
+    );
     if (capa) dados.append('capa', capa);
     if (await aoCadastrar(dados)) {
       setLivro(inicial);
       setCapa(null);
-      setVersaoCapa(valor => valor + 1);
+      setVersaoCapa((valor) => valor + 1);
     }
   }
 
@@ -39,15 +43,53 @@ export default function FormularioLivro({ aoCadastrar, salvando }) {
       <form onSubmit={enviar} noValidate>
         <fieldset disabled={salvando}>
           <label htmlFor="nome">Título do livro</label>
-          <input id="nome" name="nome" value={livro.nome} onChange={alterar} maxLength={150} required placeholder="Ex.: Dom Casmurro" />
+          <input
+            id="nome"
+            name="nome"
+            value={livro.nome}
+            onChange={alterar}
+            maxLength={150}
+            required
+            placeholder="Ex.: Dom Casmurro"
+          />
           <label htmlFor="autor">Autor</label>
-          <input id="autor" name="autor" value={livro.autor} onChange={alterar} maxLength={150} required placeholder="Quem escreveu essa história?" />
+          <input
+            id="autor"
+            name="autor"
+            value={livro.autor}
+            onChange={alterar}
+            maxLength={150}
+            required
+            placeholder="Quem escreveu essa história?"
+          />
           <label htmlFor="genero">Gênero</label>
-          <input id="genero" name="genero" value={livro.genero} onChange={alterar} maxLength={80} required placeholder="Ex.: Romance" />
-          <label className="checkbox"><input name="lido" type="checkbox" checked={livro.lido} onChange={alterar} /> Já li este livro</label>
+          <input
+            id="genero"
+            name="genero"
+            value={livro.genero}
+            onChange={alterar}
+            maxLength={80}
+            required
+            placeholder="Ex.: Romance"
+          />
+          <label className="checkbox">
+            <input
+              name="lido"
+              type="checkbox"
+              checked={livro.lido}
+              onChange={alterar}
+            />{' '}
+            Já li este livro
+          </label>
           <CampoCapa key={versaoCapa} aoSelecionar={setCapa} />
-          {erro && <p className="erro" role="alert">{erro}</p>}
-          <button className="primario" type="submit">{salvando ? 'Salvando...' : '+ Adicionar à biblioteca'}</button>
+          {erro && (
+            <p className="erro" role="alert">
+              {erro}
+            </p>
+          )}
+          <button className="primario" type="submit">
+            {salvando ? 'Salvando...' : '+ Adicionar à biblioteca'}
+          </button>
         </fieldset>
       </form>
     </section>

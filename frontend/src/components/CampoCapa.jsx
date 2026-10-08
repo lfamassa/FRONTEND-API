@@ -18,7 +18,11 @@ export default function CampoCapa({ aoSelecionar, disabled = false }) {
 
   function selecionar(evento) {
     const imagem = evento.target.files[0] || null;
-    if (imagem && (!['image/jpeg', 'image/png', 'image/webp'].includes(imagem.type) || imagem.size > 5 * 1024 * 1024)) {
+    if (
+      imagem &&
+      (!['image/jpeg', 'image/png', 'image/webp'].includes(imagem.type) ||
+        imagem.size > 5 * 1024 * 1024)
+    ) {
       setErro('Escolha uma imagem JPG, PNG ou WebP de até 5 MB.');
       evento.target.value = '';
       setArquivo(null);
@@ -33,10 +37,29 @@ export default function CampoCapa({ aoSelecionar, disabled = false }) {
   return (
     <div className="campo-capa">
       <label htmlFor={id}>Imagem da capa (opcional)</label>
-      <input id={id} type="file" accept="image/jpeg,image/png,image/webp" onChange={selecionar} disabled={disabled} aria-describedby={`${id}-ajuda`} />
-      <p id={`${id}-ajuda`} className="ajuda">JPG, PNG ou WebP. Até 5 MB.</p>
-      {preview && <img className="preview-capa" src={preview} alt="Prévia da capa selecionada" />}
-      {erro && <p className="erro" role="alert">{erro}</p>}
+      <input
+        id={id}
+        type="file"
+        accept="image/jpeg,image/png,image/webp"
+        onChange={selecionar}
+        disabled={disabled}
+        aria-describedby={`${id}-ajuda`}
+      />
+      <p id={`${id}-ajuda`} className="ajuda">
+        JPG, PNG ou WebP. Até 5 MB.
+      </p>
+      {preview && (
+        <img
+          className="preview-capa"
+          src={preview}
+          alt="Prévia da capa selecionada"
+        />
+      )}
+      {erro && (
+        <p className="erro" role="alert">
+          {erro}
+        </p>
+      )}
     </div>
   );
 }
