@@ -14,7 +14,5 @@ export async function requisitar(caminho, opcoes = {}) {
 }
 
 export function mensagemErro(erro) {
-  return erro instanceof TypeError
-    ? 'Não foi possível conectar à biblioteca. Verifique se o servidor está funcionando.'
-    : erro.message;
+  return erro instanceof TypeError ? 'Não foi possível conectar à biblioteca. Verifique se o servidor está funcionando.' : erro.message;
 }

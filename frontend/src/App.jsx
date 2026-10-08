@@ -24,11 +24,11 @@ export default function App() {
     setErro('');
     const parametros = new URLSearchParams({ nome: pesquisa, ordem });
     requisitar(`/api/livros/?${parametros}`, { signal: controller.signal })
-      .then((dados) => {
+      .then(dados => {
         setLivros(dados.livros);
         setTotal(dados.total);
       })
-      .catch((falha) => {
+      .catch(falha => {
         if (falha.name !== 'AbortError') setErro(mensagemErro(falha));
       })
       .finally(() => {
@@ -37,7 +37,7 @@ export default function App() {
     return () => controller.abort();
   }, [pesquisa, ordem, versao]);
 
-  const livrosFiltrados = livros.filter((livro) => {
+  const livrosFiltrados = livros.filter(livro => {
     if (leitura === 'lidos') return livro.lido;
     if (leitura === 'nao-lidos') return !livro.lido;
     return true;
@@ -50,7 +50,7 @@ export default function App() {
     try {
       await requisitar('/api/livros/', { method: 'POST', body: livro });
       setAviso('Livro cadastrado com sucesso.');
-      setVersao((valor) => valor + 1);
+      setVersao(valor => valor + 1);
       return true;
     } catch (falha) {
       setErro(mensagemErro(falha));
@@ -72,7 +72,7 @@ export default function App() {
         body: dados
       });
       setAviso('Capa atualizada com sucesso.');
-      setVersao((valor) => valor + 1);
+      setVersao(valor => valor + 1);
       return true;
     } catch (falha) {
       setErro(mensagemErro(falha));
@@ -90,7 +90,7 @@ export default function App() {
     try {
       await requisitar(`/api/livros/${livro.id}/`, { method: 'DELETE' });
       setAviso('Livro excluído com sucesso.');
-      setVersao((valor) => valor + 1);
+      setVersao(valor => valor + 1);
     } catch (falha) {
       setErro(mensagemErro(falha));
     } finally {
@@ -106,6 +106,7 @@ export default function App() {
         </a>
         <span className="cabecalho-nota">Cada livro, um novo mundo.</span>
       </header>
+
       <main>
         <section className="introducao">
           <div>
@@ -119,22 +120,15 @@ export default function App() {
           </div>
           <div className="contador">
             <strong>{total}</strong>
-            <span>
-              {total === 1 ? 'livro na biblioteca' : 'livros na biblioteca'}
-            </span>
+            <span>{total === 1 ? 'livro na biblioteca' : 'livros na biblioteca'}</span>
           </div>
         </section>
         {erro && (
           <div className="erro alerta" role="alert">
-            {erro}{' '}
-            <button onClick={() => setVersao((valor) => valor + 1)}>
-              Tentar novamente
-            </button>
+            {erro} <button onClick={() => setVersao(valor => valor + 1)}>Tentar novamente</button>
           </div>
         )}
-        <p className="aviso" role="status">
-          {aviso}
-        </p>
+        <p className="aviso" role="status">{aviso}</p>
         <div className="conteudo">
           <FormularioLivro aoCadastrar={cadastrar} salvando={salvando} />
           <section className="colecao" aria-labelledby="titulo-colecao">
@@ -151,9 +145,7 @@ export default function App() {
               aoOrdenar={setOrdem}
             />
             {carregando ? (
-              <p className="vazio" role="status">
-                Carregando...
-              </p>
+              <p className="vazio" role="status">Carregando...</p>
             ) : (
               <ListaLivros
                 livros={livrosFiltrados}
@@ -167,6 +159,7 @@ export default function App() {
           </section>
         </div>
       </main>
+
       <footer>
         entrelinhas <span>Um espaço para as histórias que ficam.</span>
       </footer>

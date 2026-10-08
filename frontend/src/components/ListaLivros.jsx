@@ -18,50 +18,34 @@ export default function ListaLivros({
       setCapa(null);
     }
   }
+
   if (!livros.length) {
     return (
       <div className="vazio">
         <span aria-hidden="true">▤</span>
-        <h3>
-          {filtrando ? 'Nenhum livro encontrado.' : 'Nenhum item cadastrado.'}
-        </h3>
-        <p>
-          {filtrando
-            ? 'Tente outro título ou filtro de leitura.'
-            : 'Sua próxima história começa no formulário ao lado.'}
-        </p>
+        <h3>{filtrando ? 'Nenhum livro encontrado.' : 'Nenhum item cadastrado.'}</h3>
+        <p>{filtrando ? 'Tente outro título ou filtro de leitura.' : 'Sua próxima história começa no formulário ao lado.'}</p>
       </div>
     );
   }
 
   return (
     <ul className="livros">
-      {livros.map((livro) => (
+      {livros.map(livro => (
         <li className="livro" key={livro.id}>
           {livro.capa ? (
-            <img
-              className="capa-livro"
-              src={livro.capa}
-              alt={`Capa de ${livro.nome}`}
-            />
+            <img className="capa-livro" src={livro.capa} alt={`Capa de ${livro.nome}`} />
           ) : (
-            <div className="lombada" aria-hidden="true">
-              {livro.nome.slice(0, 1).toUpperCase()}
-            </div>
+            <div className="lombada" aria-hidden="true">{livro.nome.slice(0, 1).toUpperCase()}</div>
           )}
           <div className="livro-info">
             <span className="genero">{livro.genero}</span>
             <h3>{livro.nome}</h3>
             <p>{livro.autor}</p>
-            <span className={`status ${livro.lido ? 'lido' : ''}`}>
-              {livro.lido ? '✓ Lido' : '○ Para ler'}
-            </span>
+            <span className={`status ${livro.lido ? 'lido' : ''}`}>{livro.lido ? '✓ Lido' : '○ Para ler'}</span>
             {editando === livro.id && (
               <div className="editar-capa">
-                <CampoCapa
-                  aoSelecionar={setCapa}
-                  disabled={atualizandoCapa !== null}
-                />
+                <CampoCapa aoSelecionar={setCapa} disabled={atualizandoCapa !== null} />
                 <button
                   className="primario"
                   disabled={!capa || atualizandoCapa !== null}
@@ -81,11 +65,7 @@ export default function ListaLivros({
                 setCapa(null);
               }}
             >
-              {editando === livro.id
-                ? 'Cancelar'
-                : livro.capa
-                  ? 'Trocar capa'
-                  : 'Adicionar capa'}
+              {editando === livro.id ? 'Cancelar' : livro.capa ? 'Trocar capa' : 'Adicionar capa'}
             </button>
             <button
               className="excluir"

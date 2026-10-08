@@ -16,22 +16,18 @@ export default function FormularioLivro({ aoCadastrar, salvando }) {
 
   async function enviar(evento) {
     evento.preventDefault();
-    if (
-      ![livro.nome, livro.autor, livro.genero].every((valor) => valor.trim())
-    ) {
+    if (![livro.nome, livro.autor, livro.genero].every(valor => valor.trim())) {
       setErro('Preencha título, autor e gênero para cadastrar.');
       return;
     }
     setErro('');
     const dados = new FormData();
-    Object.entries(livro).forEach(([campo, valor]) =>
-      dados.append(campo, valor)
-    );
+    Object.entries(livro).forEach(([campo, valor]) => dados.append(campo, valor));
     if (capa) dados.append('capa', capa);
     if (await aoCadastrar(dados)) {
       setLivro(inicial);
       setCapa(null);
-      setVersaoCapa((valor) => valor + 1);
+      setVersaoCapa(valor => valor + 1);
     }
   }
 
@@ -52,6 +48,7 @@ export default function FormularioLivro({ aoCadastrar, salvando }) {
             required
             placeholder="Ex.: Dom Casmurro"
           />
+
           <label htmlFor="autor">Autor</label>
           <input
             id="autor"
@@ -62,6 +59,7 @@ export default function FormularioLivro({ aoCadastrar, salvando }) {
             required
             placeholder="Quem escreveu essa história?"
           />
+
           <label htmlFor="genero">Gênero</label>
           <input
             id="genero"
@@ -72,6 +70,7 @@ export default function FormularioLivro({ aoCadastrar, salvando }) {
             required
             placeholder="Ex.: Romance"
           />
+
           <label className="checkbox">
             <input
               name="lido"
@@ -81,12 +80,11 @@ export default function FormularioLivro({ aoCadastrar, salvando }) {
             />{' '}
             Já li este livro
           </label>
+
           <CampoCapa key={versaoCapa} aoSelecionar={setCapa} />
-          {erro && (
-            <p className="erro" role="alert">
-              {erro}
-            </p>
-          )}
+
+          {erro && <p className="erro" role="alert">{erro}</p>}
+
           <button className="primario" type="submit">
             {salvando ? 'Salvando...' : '+ Adicionar à biblioteca'}
           </button>
